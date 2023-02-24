@@ -26,3 +26,6 @@
 -keep class com.google.** {
   *;
 }
+-keepclassmembernames class app.revanced.all.connectivity.wifi.spoof.** {
+    *;
+}

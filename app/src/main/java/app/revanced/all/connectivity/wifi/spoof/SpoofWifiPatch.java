@@ -194,140 +194,162 @@ public class SpoofWifiPatch {
     // If it waits for Wifi connectivity, pretend it is fulfilled immediately if we have an active network.
     @RequiresApi(api = Build.VERSION_CODES.S)
     public static void registerBestMatchingNetworkCallback(ConnectivityManager connectivityManager, NetworkRequest request, ConnectivityManager.NetworkCallback networkCallback, Handler handler) {
-        Utils.networkCallback(
+        boolean runFallback = Utils.networkCallback(
                 connectivityManager,
                 Utils.Option.of(request),
                 Utils.Option.of(networkCallback),
                 Utils.Option.empty(),
-                Utils.Option.of(handler),
-                () -> connectivityManager.registerBestMatchingNetworkCallback(request, networkCallback, handler)
+                Utils.Option.of(handler)
         );
+        if (runFallback) {
+            connectivityManager.registerBestMatchingNetworkCallback(request, networkCallback, handler);
+        }
     }
 
     // If it waits for Wifi connectivity, pretend it is fulfilled immediately if we have an active network.
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static void registerDefaultNetworkCallback(ConnectivityManager connectivityManager, ConnectivityManager.NetworkCallback networkCallback) {
-        Utils.networkCallback(
+        boolean runFallback = Utils.networkCallback(
                 connectivityManager,
                 Utils.Option.empty(),
                 Utils.Option.of(networkCallback),
                 Utils.Option.empty(),
-                Utils.Option.empty(),
-                () -> connectivityManager.registerDefaultNetworkCallback(networkCallback)
+                Utils.Option.empty()
         );
+        if (runFallback) {
+            connectivityManager.registerDefaultNetworkCallback(networkCallback);
+        }
     }
 
     // If it waits for Wifi connectivity, pretend it is fulfilled immediately if we have an active network.
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void registerDefaultNetworkCallback(ConnectivityManager connectivityManager, ConnectivityManager.NetworkCallback networkCallback, Handler handler) {
-        Utils.networkCallback(
+        boolean runFallback = Utils.networkCallback(
                 connectivityManager,
                 Utils.Option.empty(),
                 Utils.Option.of(networkCallback),
                 Utils.Option.empty(),
-                Utils.Option.of(handler),
-                () -> connectivityManager.registerDefaultNetworkCallback(networkCallback, handler)
+                Utils.Option.of(handler)
         );
+        if (runFallback) {
+            connectivityManager.registerDefaultNetworkCallback(networkCallback, handler);
+        }
     }
 
     // If it waits for Wifi connectivity, pretend it is fulfilled immediately if we have an active network.
     public static void registerNetworkCallback(ConnectivityManager connectivityManager, NetworkRequest request, ConnectivityManager.NetworkCallback networkCallback) {
-        Utils.networkCallback(
+        boolean runFallback = Utils.networkCallback(
                 connectivityManager,
                 Utils.Option.of(request),
                 Utils.Option.of(networkCallback),
                 Utils.Option.empty(),
-                Utils.Option.empty(),
-                () -> connectivityManager.registerNetworkCallback(request, networkCallback)
+                Utils.Option.empty()
         );
+        if (runFallback) {
+            connectivityManager.registerNetworkCallback(request, networkCallback);
+        }
     }
 
     // If it waits for Wifi connectivity, pretend it is fulfilled immediately.
     public static void registerNetworkCallback(ConnectivityManager connectivityManager, NetworkRequest request, PendingIntent operation) {
-        Utils.networkCallback(
+        boolean runFallback = Utils.networkCallback(
                 connectivityManager,
                 Utils.Option.of(request),
                 Utils.Option.empty(),
                 Utils.Option.of(operation),
-                Utils.Option.empty(),
-                () -> connectivityManager.registerNetworkCallback(request, operation)
+                Utils.Option.empty()
         );
+        if (runFallback) {
+            connectivityManager.registerNetworkCallback(request, operation);
+        }
     }
 
     // If it waits for Wifi connectivity, pretend it is fulfilled immediately if we have an active network.
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void registerNetworkCallback(ConnectivityManager connectivityManager, NetworkRequest request, ConnectivityManager.NetworkCallback networkCallback, Handler handler) {
-        Utils.networkCallback(
+        boolean runFallback = Utils.networkCallback(
                 connectivityManager,
                 Utils.Option.of(request),
                 Utils.Option.of(networkCallback),
                 Utils.Option.empty(),
-                Utils.Option.of(handler),
-                () -> connectivityManager.registerNetworkCallback(request, networkCallback, handler)
+                Utils.Option.of(handler)
         );
+        if (runFallback) {
+            connectivityManager.registerNetworkCallback(request, networkCallback, handler);
+        }
     }
 
     // If it requests Wifi connectivity, pretend it is fulfilled immediately if we have an active network.
     public static void requestNetwork(ConnectivityManager connectivityManager, NetworkRequest request, ConnectivityManager.NetworkCallback networkCallback) {
-        Utils.networkCallback(
+        boolean runFallback = Utils.networkCallback(
                 connectivityManager,
                 Utils.Option.of(request),
                 Utils.Option.of(networkCallback),
                 Utils.Option.empty(),
-                Utils.Option.empty(),
-                () -> connectivityManager.requestNetwork(request, networkCallback)
+                Utils.Option.empty()
         );
+        if (runFallback) {
+            connectivityManager.requestNetwork(request, networkCallback);
+        }
     }
 
     // If it requests Wifi connectivity, pretend it is fulfilled immediately if we have an active network.
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void requestNetwork(ConnectivityManager connectivityManager, NetworkRequest request, ConnectivityManager.NetworkCallback networkCallback, int timeoutMs) {
-        Utils.networkCallback(
+        boolean runFallback = Utils.networkCallback(
                 connectivityManager,
                 Utils.Option.of(request),
                 Utils.Option.of(networkCallback),
                 Utils.Option.empty(),
-                Utils.Option.empty(),
-                () -> connectivityManager.requestNetwork(request, networkCallback, timeoutMs)
+                Utils.Option.empty()
         );
+        if (runFallback) {
+            connectivityManager.requestNetwork(request, networkCallback, timeoutMs);
+        }
     }
 
     // If it requests Wifi connectivity, pretend it is fulfilled immediately if we have an active network.
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void requestNetwork(ConnectivityManager connectivityManager, NetworkRequest request, ConnectivityManager.NetworkCallback networkCallback, Handler handler) {
-        Utils.networkCallback(
+        boolean runFallback = Utils.networkCallback(
                 connectivityManager,
                 Utils.Option.of(request),
                 Utils.Option.of(networkCallback),
                 Utils.Option.empty(),
-                Utils.Option.of(handler),
-                () -> connectivityManager.requestNetwork(request, networkCallback, handler)
+                Utils.Option.of(handler)
         );
+        if (runFallback) {
+            connectivityManager.requestNetwork(request, networkCallback, handler);
+        }
     }
 
     // If it requests Wifi connectivity, pretend it is fulfilled immediately.
     public static void requestNetwork(ConnectivityManager connectivityManager, NetworkRequest request, PendingIntent operation) {
-        Utils.networkCallback(
+        boolean runFallback = Utils.networkCallback(
                 connectivityManager,
                 Utils.Option.of(request),
                 Utils.Option.empty(),
                 Utils.Option.of(operation),
-                Utils.Option.empty(),
-                () -> connectivityManager.requestNetwork(request, operation)
+                Utils.Option.empty()
         );
+        if (runFallback) {
+            connectivityManager.requestNetwork(request, operation);
+        }
     }
 
     // If it requests Wifi connectivity, pretend it is fulfilled immediately if we have an active network.
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void requestNetwork(ConnectivityManager connectivityManager, NetworkRequest request, ConnectivityManager.NetworkCallback networkCallback, Handler handler, int timeoutMs) {
-        Utils.networkCallback(
+        boolean runFallback = Utils.networkCallback(
                 connectivityManager,
                 Utils.Option.of(request),
                 Utils.Option.of(networkCallback),
                 Utils.Option.empty(),
-                Utils.Option.of(handler),
-                () -> connectivityManager.requestNetwork(request, networkCallback, handler, timeoutMs)
+                Utils.Option.of(handler)
         );
+        if (runFallback) {
+            connectivityManager.requestNetwork(request, networkCallback, handler, timeoutMs);
+        }
     }
 
     public static void unregisterNetworkCallback(ConnectivityManager connectivityManager, ConnectivityManager.NetworkCallback networkCallback) {
@@ -365,41 +387,69 @@ public class SpoofWifiPatch {
             }
         }
 
-        private static void networkCallback(
+        private static class NetworkAvailableRunnable implements Runnable {
+            private final ConnectivityManager.NetworkCallback networkCallback;
+            private final Network network;
+
+            private NetworkAvailableRunnable(ConnectivityManager.NetworkCallback networkCallback, Network network) {
+                this.networkCallback = networkCallback;
+                this.network = network;
+            }
+
+            @Override
+            public void run() {
+                networkCallback.onAvailable(network);
+            }
+        }
+
+        private static class PendingIntentSendRunnable implements Runnable {
+            private final PendingIntent operation;
+
+            private PendingIntentSendRunnable(PendingIntent operation) {
+                this.operation = operation;
+            }
+
+            @Override
+            public void run() {
+                try {
+                    operation.send();
+                } catch (PendingIntent.CanceledException ignore) {}
+            }
+        }
+
+        /**
+         * @return whether the fallback should run
+         */
+        private static boolean networkCallback(
                 ConnectivityManager connectivityManager,
                 Option<NetworkRequest> request,
                 Option<ConnectivityManager.NetworkCallback> networkCallback,
                 Option<PendingIntent> operation,
-                Option<Handler> handler,
-                Runnable fallback
+                Option<Handler> handler
         ) {
             if(!request.isPresent || (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && request.value != null && requestsWifiNetwork(request.value))) {
                 Runnable runnable = null;
                 if (networkCallback.isPresent && networkCallback.value != null) {
                     Network network = activeWifiNetwork(connectivityManager);
                     if (network != null) {
-                        runnable = () -> networkCallback.value.onAvailable(network);
+                        runnable = new NetworkAvailableRunnable(networkCallback.value, network);
                     }
                 } else if (operation.isPresent && operation.value != null) {
-                    runnable = () -> {
-                        try {
-                            operation.value.send();
-                        } catch (PendingIntent.CanceledException ignore) {}
-                    };
+                    runnable = new PendingIntentSendRunnable(operation.value);
                 }
                 if (runnable != null) {
                     if (handler.isPresent) {
                         if (handler.value != null) {
                             handler.value.post(runnable);
-                            return;
+                            return false;
                         }
                     } else {
                         runnable.run();
-                        return;
+                        return false;
                     }
                 }
             }
-            fallback.run();
+            return true;
         }
 
         // Returns an active (maybe fake) Wifi network if there is one, otherwise null.
